@@ -15,22 +15,29 @@ export type ShippedLink = {
   kind: "repo" | "demo";
 };
 
+/** A stat shown as a big `value` and a small muted `label`; joined with a space they read as one phrase. */
+export type ShippedStat = {
+  value: string;
+  label: string;
+};
+
 export type ShippedRole = {
   company: string;
   role: string;
   dates: string;
   location: string;
   icon: LucideIcon;
-  stat: string;
+  stat: ShippedStat;
   bullets: string[];
   tags: string[];
 };
 
 export type ShippedProject = {
+  /** "Name · description"; the part before the first " · " renders as the name. */
   title: string;
   context: string;
   icon: LucideIcon;
-  stat: string;
+  stat: ShippedStat;
   bullets: string[];
   tags: string[];
   links: ShippedLink[];
@@ -64,15 +71,15 @@ export const shipped: ShippedContent = {
     roles: [
       {
         company: "NVIDIA",
-        role: "Software Engineering Intern, Simulation Technology (Omniverse)",
-        dates: "May 2026 – Aug 2026",
+        role: "Software Engineering Intern · Omniverse, Simulation Technology",
+        dates: "May – Aug 2026",
         location: "Santa Clara, CA",
         icon: Cpu,
-        stat: "0 unsafe skips",
+        stat: { value: "0", label: "unsafe skips" },
         bullets: [
-          "AI-assisted Python execution planner for Omniverse CI deciding which builds + GPU tests a merge request actually needs, trained on 20,724 historical decisions",
-          "AI-suggested graph edges kept separate from SHA-256 sealed release policies: 8,569 safe test deferrals across 628 merge requests, zero confirmed unsafe skips",
-          "Profiled constrained CI workers + cached graph snapshots, cutting planning time 42%",
+          "Built an AI-assisted execution planner for Omniverse CI that coordinates source scanners, container builds and GPU-test validation across 20,724 historical decisions.",
+          "Kept AI-suggested dependency edges separate from SHA-256-sealed release policies, so the planner deferred 8,569 tests across 628 merge requests with zero confirmed unsafe skips.",
+          "Profiled constrained CI workers and cached graph snapshots, cutting planning time by 42% and executed-job time by 50.5% in a controlled replay.",
         ],
         tags: ["Python", "CI", "graph analysis"],
       },
@@ -82,10 +89,11 @@ export const shipped: ShippedContent = {
         dates: "Jul 2022 – Dec 2024",
         location: "Bengaluru, India",
         icon: Briefcase,
-        stat: "60% fewer P1/P2",
+        stat: { value: "60%", label: "fewer P1/P2 incidents" },
         bullets: [
-          "Event-driven Java/Spring Boot APIs syncing financial state through Kafka + Elasticsearch for 1,000+ enterprise clients",
-          "Durable async jobs for 4M+ monthly statements, traced cross-service race conditions + hardened recovery, contributing to 60% fewer P1/P2 incidents",
+          "Built event-driven Java/Spring Boot APIs that kept financial state in sync through Kafka and Elasticsearch for 1,000+ enterprise clients across 200+ sites.",
+          "Designed durable async jobs for 4M+ monthly statements, covering generation, S3 storage, SES delivery and bounded retries.",
+          "Traced race conditions between Kafka consumers and the search index, then hardened recovery with backoff and jitter, contributing to a 60% drop in P1/P2 incidents.",
         ],
         tags: ["Java", "Spring Boot", "Kafka", "Elasticsearch", "AWS"],
       },
@@ -95,14 +103,15 @@ export const shipped: ShippedContent = {
     heading: "Projects",
     items: [
       {
-        title: "Neo — multi-agent credit + access desk",
-        context: "Cal Hacks 13.0 · team of 4",
+        title: "Neo · multi-agent credit and access desk",
+        context: "Cal Hacks 13.0 · team of 4 · I wrote 110 of 183 commits",
         icon: Bot,
-        stat: "110 / 183 commits",
+        stat: { value: "110 of 183", label: "commits" },
         bullets: [
-          "Four agents run the credit desk for a fictional crypto platform: match payments, collect overdue fees, restrict + restore access. Real money moves through the Capital One Nessie sandbox",
-          "My part (110 of 183 commits): the SpacetimeDB schema + reducers where the guardrails live, so an agent can't restrict more than what's owed or approve its own proposal. Plus bank/platform sync + the gateway, agents in TypeScript on Factory Droid with MCP tools, Azure hosting + CI that only redeploys what changed",
-          "Capped model calls at 2 after 8 parallel Droid processes ran the container out of memory, and added task claiming so multiple agent processes share one queue without double work",
+          "Four agents run the credit desk of a simulated crypto platform: they match payments, collect overdue fees, and restrict or restore client access. Money moves through Capital One's Nessie sandbox bank.",
+          "I built the guardrail layer: SpacetimeDB reducers that check every agent action against the client's contract, so an agent can't restrict more than is owed or approve its own proposal.",
+          "I also built the bank and platform sync, the gateway that is the only writer to systems of record, the TypeScript agents on Factory Droid with MCP tools, and Azure deploys that only restart what changed.",
+          "When 8 parallel Droid processes ran the hosted container out of memory, I capped model calls at 2 and added task claiming so agent processes share one queue without duplicate work.",
         ],
         tags: ["TypeScript", "SpacetimeDB", "Factory Droid", "MCP", "Azure"],
         links: [
@@ -111,13 +120,14 @@ export const shipped: ShippedContent = {
         ],
       },
       {
-        title: "Outpost — multi-tenant enterprise agent runtime",
+        title: "Outpost · multi-tenant enterprise agent runtime",
         context: "Personal project",
         icon: Building2,
-        stat: "0 leaks in 14 probes",
+        stat: { value: "123s", label: "to onboard a new tenant" },
         bullets: [
-          "YAML-defined connectors, tools + tenant budgets; onboarded an unseen tenant vertical in 123 seconds without core code changes",
-          "Tenant isolation enforced inside retrieval, zero cross-tenant leaks across 14 adversarial probes. 145 tests, 94% branch coverage",
+          "Connectors, tools and per-tenant budgets are declared in YAML, so an unseen tenant vertical was onboarded in 123 seconds with no core code changes.",
+          "Tenant isolation is enforced inside BM25 and vector retrieval: zero cross-tenant leaks across 14 adversarial probes.",
+          "Sentence-level evidence grounding and deadline-bound provider fallback, covered by 145 tests at 94% branch coverage.",
         ],
         tags: ["Python", "FastAPI", "React", "RAG"],
         links: [
@@ -125,13 +135,14 @@ export const shipped: ShippedContent = {
         ],
       },
       {
-        title: "Penstock — multi-provider LLM gateway",
-        context: "Open source",
+        title: "Penstock · multi-provider LLM gateway",
+        context: "Open source · Apache-2.0",
         icon: Gauge,
-        stat: "1.02ms vs 12.14ms",
+        stat: { value: "1.02 ms", label: "vs 12.14 ms" },
         bullets: [
-          "One OpenAI-compatible endpoint across 3 providers with SSE streaming, circuit breaking, retries that never splice partial completions",
-          "1.02ms mean added latency vs 12.14ms for LiteLLM over 2,400 requests per arm, 441 Go tests",
+          "One OpenAI-compatible endpoint in front of 3 LLM providers, with SSE streaming, circuit breaking, and retries that never splice partial completions.",
+          "Two-phase tenant spend reservations with durable settlement under concurrent load, covered by 441 Go tests.",
+          "1.02 ms mean added latency vs 12.14 ms for LiteLLM over 2,400 requests per arm, reproduced across eight Linux configurations.",
         ],
         tags: ["Go", "SSE", "OpenTelemetry"],
         links: [
@@ -139,13 +150,14 @@ export const shipped: ShippedContent = {
         ],
       },
       {
-        title: "ClaraCare — realtime voice agent",
-        context: "Hackathon winner",
+        title: "ClaraCare · realtime voice agent",
+        context: "Hackathon winner · team project",
         icon: PhoneCall,
-        stat: "6 live-call tools",
+        stat: { value: "6", label: "tools callable mid-call" },
         bullets: [
-          "Realtime voice agent bridging Twilio Media Streams with Deepgram STT/LLM/TTS over dual async WebSockets, 6 callable tools during live calls",
-          "Conversations + alert state behind 11 Supabase RLS policies, with failure-isolated notifications",
+          "Realtime voice agent bridging Twilio Media Streams and Deepgram speech-to-text, LLM and text-to-speech over two async WebSockets.",
+          "Separates silent agent steering from spoken injections using state-aware queues with latest-wins coalescing.",
+          "Conversation and alert state protected by 11 Supabase row-level security policies.",
         ],
         tags: ["Python", "WebSockets", "Deepgram", "React Native"],
         links: [
@@ -156,11 +168,11 @@ export const shipped: ShippedContent = {
   },
   credits: {
     hackathons: {
-      text: "4x hackathon winner: Signet, ClaraCare, ClearClause, SJ Hopes",
+      text: "Won 4 hackathons: Signet, ClaraCare, ClearClause and SJ Hopes",
       href: "https://devpost.com/rajeevranjan-chaurasia",
     },
     certifications: {
-      label: "NVIDIA Certified",
+      label: "NVIDIA-certified",
       links: [
         {
           label: "Agentic AI",

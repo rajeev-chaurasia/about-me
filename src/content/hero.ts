@@ -23,11 +23,11 @@ export type HeroContent = {
 
 export const hero: HeroContent = {
   name: "Rajeev Ranjan Chaurasia",
-  line: "Software engineer building AI agent systems with guardrails that hold up in production. Most recently at NVIDIA, making Omniverse CI smarter about what it can safely skip.",
+  line: "Software engineer building AI agents that are safe to run in production. At NVIDIA I built an AI-assisted planner that decides which Omniverse CI tests can be safely skipped: zero unsafe skips across 628 merge requests.",
   chips: [
-    { label: "Available Jan 2027", status: true },
-    { label: "SF Bay Area, remote ok" },
-    { label: "TypeScript / Python / Go / Java" },
+    { label: "Available January 2027", status: true },
+    { label: "Bay Area or remote" },
+    { label: "TypeScript · Python · Go · Java" },
   ],
   email: {
     label: "Email me",
@@ -41,5 +41,5 @@ export const hero: HeroContent = {
     label: "LinkedIn",
     href: "https://linkedin.com/in/rajeev-ranjan-chaurasia",
   },
-  school: "M.S. Software Engineering @ SJSU, Dec 2026",
+  school: "M.S. Software Engineering, San Jose State University · December 2026",
 };
