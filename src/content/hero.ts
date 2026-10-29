@@ -7,7 +7,7 @@ export type HeroContent = {
 
 export const hero: HeroContent = {
   name: "Rajeev Ranjan Chaurasia",
-  line: "software engineer building AI agent systems with guardrails that hold up in production. most recently at NVIDIA making Omniverse CI smarter about what it can safely skip",
+  line: "Software engineer building AI agent systems with guardrails that hold up in production. Most recently at NVIDIA, making Omniverse CI smarter about what it can safely skip.",
   chips: [
     "Available Jan 2027",
     "SF Bay Area, remote ok",
