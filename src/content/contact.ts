@@ -3,6 +3,8 @@ export type ContactLink = {
   href: string;
   /** Opens in a new tab with rel="noopener noreferrer". */
   external: boolean;
+  /** Which icon the row shows. */
+  icon: "mail" | "linkedin" | "github" | "devpost";
 };
 
 export type ContactContent = {
@@ -22,21 +24,25 @@ export const contact: ContactContent = {
       label: "rajeevchaurasia.dev@gmail.com",
       href: "mailto:rajeevchaurasia.dev@gmail.com",
       external: false,
+      icon: "mail",
     },
     {
       label: "LinkedIn",
       href: "https://linkedin.com/in/rajeev-ranjan-chaurasia",
       external: true,
+      icon: "linkedin",
     },
     {
       label: "GitHub",
       href: "https://github.com/rajeev-chaurasia",
       external: true,
+      icon: "github",
     },
     {
       label: "Devpost",
       href: "https://devpost.com/rajeevranjan-chaurasia",
       external: true,
+      icon: "devpost",
     },
   ],
 };
