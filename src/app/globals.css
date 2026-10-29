@@ -7,10 +7,27 @@
   --color-muted: #8a8a8a;
   --color-border: #262626;
   --color-accent: #f5d76e;
+  --color-success: #6fcf97;
 }
 
 :root {
   color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Keep anchored sections clear of the sticky nav (h-14). */
+section[id] {
+  scroll-margin-top: --spacing(16);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-foreground);
+  outline-offset: 2px;
 }
 
 body {
@@ -61,4 +78,45 @@ body {
   line-height: var(--text-xs--line-height);
   font-weight: var(--font-weight-medium);
   color: var(--color-accent);
+}
+
+/* Small status dot with a gentle pulse, e.g. the "available" dot (pair with bg-success). */
+@utility pulse-dot {
+  display: inline-block;
+  width: --spacing(2);
+  height: --spacing(2);
+  border-radius: calc(infinity * 1px);
+  @media (prefers-reduced-motion: no-preference) {
+    animation: pulse-dot 2.4s ease-in-out infinite;
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* <Reveal>: hidden state is only set by JS after it checks reduced motion. */
+[data-reveal] {
+  transition:
+    opacity 500ms ease-out,
+    transform 500ms ease-out;
+}
+
+[data-reveal="hidden"] {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
 }
