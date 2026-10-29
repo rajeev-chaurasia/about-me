@@ -1,12 +1,17 @@
 export type HeroContent = {
   name: string;
-  tagline: string;
-  intro: string;
+  line: string;
+  chips: string[];
+  school: string;
 };
 
 export const hero: HeroContent = {
-  name: "[Placeholder Name]",
-  tagline: "[Placeholder tagline — one line about what you do]",
-  intro:
-    "[Placeholder intro — a short paragraph introducing yourself. Replaced by the Hero ticket.]",
+  name: "Rajeev Ranjan Chaurasia",
+  line: "Software engineer building AI agent systems with guardrails that hold up in production. Most recently at NVIDIA, making Omniverse CI smarter about what it can safely skip.",
+  chips: [
+    "Available Jan 2027",
+    "SF Bay Area, remote ok",
+    "TypeScript / Python / Go / Java",
+  ],
+  school: "M.S. Software Engineering @ SJSU, Dec 2026",
 };
