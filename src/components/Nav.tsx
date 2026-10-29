@@ -29,10 +29,10 @@ export default function Nav() {
         className="mx-auto flex h-14 max-w-3xl items-center justify-between gap-3 px-4 sm:px-6"
       >
         <a href="#hero" className="shrink-0 text-sm font-semibold tracking-tight">
-          <span aria-hidden="true" className="min-[400px]:hidden">
+          <span aria-hidden="true" className="sm:hidden">
             RC
           </span>
-          <span className="sr-only min-[400px]:not-sr-only">Rajeev Chaurasia</span>
+          <span className="sr-only sm:not-sr-only">Rajeev Ranjan Chaurasia</span>
         </a>
         <ul className="flex items-center gap-3 text-sm text-muted sm:gap-6">
           {links.map((link) => (

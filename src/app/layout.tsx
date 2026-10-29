@@ -38,6 +38,12 @@ export default function RootLayout({
           Skip to content
         </a>
         {children}
+        <footer className="border-t border-border">
+          <div className="mx-auto flex max-w-3xl flex-col gap-1 px-4 py-6 text-[13px] leading-5 text-muted sm:flex-row sm:justify-between sm:gap-4 sm:px-6 sm:text-sm sm:leading-[22px]">
+            <p>Built with Fredrin · Next.js · Tailwind CSS</p>
+            <p>© 2026 Rajeev Ranjan Chaurasia</p>
+          </div>
+        </footer>
       </body>
     </html>
   );
