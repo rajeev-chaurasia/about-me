@@ -46,6 +46,35 @@ Tailwind CSS v4, built as a static export (`out/`) and deployed on Vercel.
 - No new dependencies without calling it out in the PR description.
 - Layout must not scroll horizontally at a 320px viewport.
 
+## Design
+
+Dark + minimal, always dark (no light theme). Tokens and utilities live in
+`src/app/globals.css`; the system font stack is kept (no font loader).
+
+Color tokens (`@theme`, so each has matching utilities like `bg-*`, `text-*`,
+`border-*`):
+
+| Token | Purpose |
+|---|---|
+| `background` | Near-black page background. |
+| `foreground` | Off-white primary text. |
+| `muted` | Gray for secondary text. |
+| `border` | Subtle borders and dividers. |
+| `accent` | Soft yellow — only for small tags/labels, nowhere else. |
+
+Shared utilities:
+
+| Utility | Purpose |
+|---|---|
+| `eyebrow` | Small uppercase muted label, e.g. "02 · WHAT I'VE SHIPPED". |
+| `card` | Bordered, rounded, padded box on the background. |
+| `chip` | Neutral bordered pill, e.g. "Available Jan 2027". |
+| `tag` | Small accent-colored label (the one use of `accent`). |
+
+Rule: `src/components/sections/*` and `src/content/*` use only these tokens and
+utilities (plus Tailwind's layout/spacing/type utilities) — no raw hex values,
+arbitrary colors or one-off palette colors.
+
 ## Traps
 
 - Static export (`output: "export"`): no API routes, no route handlers, no
