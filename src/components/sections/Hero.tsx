@@ -6,8 +6,15 @@ export default function Hero() {
       <h1 className="text-4xl font-bold tracking-tight break-words sm:text-5xl">
         {hero.name}
       </h1>
-      <p className="mt-4 text-xl opacity-80">{hero.tagline}</p>
-      <p className="mt-6 text-base leading-7">{hero.intro}</p>
+      <p className="mt-6 text-lg leading-8">{hero.line}</p>
+      <ul className="mt-6 flex flex-wrap gap-2">
+        {hero.chips.map((chip) => (
+          <li key={chip} className="chip">
+            {chip}
+          </li>
+        ))}
+      </ul>
+      <p className="mt-6 text-sm text-muted">{hero.school}</p>
     </section>
   );
 }
