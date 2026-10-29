@@ -50,7 +50,7 @@ export const shipped: ShippedContent = {
     },
     {
       title: "Outpost — multi-tenant enterprise agent runtime",
-      context: "Side project",
+      context: "Personal project",
       bullets: [
         "YAML-defined connectors, tools + tenant budgets; onboarded an unseen tenant vertical in 123 seconds without core code changes",
         "Tenant isolation enforced inside retrieval, zero cross-tenant leaks across 14 adversarial probes. 145 tests, 94% branch coverage",
@@ -74,10 +74,13 @@ export const shipped: ShippedContent = {
         "1.02ms mean added latency vs 12.14ms for LiteLLM over 2,400 requests per arm, 441 Go tests",
       ],
       tags: ["Go", "SSE", "OpenTelemetry"],
+      links: [
+        { label: "Repo", href: "https://github.com/rajeev-chaurasia/pen-stock" },
+      ],
     },
   ],
   also: {
-    text: "also built ClaraCare (realtime voice agent, Twilio + Deepgram) · 4x hackathon winner",
+    text: "Also built ClaraCare (realtime voice agent, Twilio + Deepgram) · 4x hackathon winner",
     href: "https://devpost.com/rajeevranjan-chaurasia",
   },
 };
