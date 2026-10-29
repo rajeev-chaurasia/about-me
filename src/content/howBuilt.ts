@@ -1,6 +1,8 @@
 export type HowBuiltLink = {
   label: string;
   href: string;
+  /** "repo" shows the GitHub mark, "prs" a pull request icon. */
+  kind: "repo" | "prs";
 };
 
 export type FieldNote = {
@@ -27,21 +29,23 @@ export type HowBuiltContent = {
 
 export const howBuilt: HowBuiltContent = {
   eyebrow: "03 · HOW THIS PAGE WAS BUILT",
-  heading: "How This Page Was Built",
+  heading: "How this page was built",
   build: {
     heading: "The build",
     points: [
       "I built this page entirely with Fredrin, one ticket at a time, each in its own branch and worktree.",
       "The first ticket scaffolded the site and wrote AGENTS.md, so every later Worker knew the commands, file map and traps before writing any code.",
       "A design ticket set shared tokens, so the parallel Workers didn't invent their own styling.",
-      "Hero, Shipped and Contact ran as 3 Workers in parallel, each fenced to its own files, so they merged without conflicts.",
-      "I reviewed every diff before merging.",
+      "Hero, Shipped, Contact and this section ran as 4 Workers in parallel, each fenced to its own files, so they merged without conflicts.",
+      "I reviewed each diff against its acceptance checks before merging.",
+      "A polish round ran the same way: one shared ticket for nav, motion and icons first, then two section tickets in parallel.",
     ],
     links: [
-      { label: "Repo", href: "https://github.com/rajeev-chaurasia/about-me" },
+      { label: "Repo", href: "https://github.com/rajeev-chaurasia/about-me", kind: "repo" },
       {
         label: "PR history",
         href: "https://github.com/rajeev-chaurasia/about-me/pulls?q=is%3Apr+is%3Aclosed",
+        kind: "prs",
       },
     ],
   },

@@ -1,3 +1,6 @@
+import { GitPullRequest } from "lucide-react";
+import Reveal from "@/components/Reveal";
+import { GitHub } from "@/components/icons/Brand";
 import { howBuilt } from "@/content/howBuilt";
 
 export default function HowBuilt() {
@@ -16,18 +19,22 @@ export default function HowBuilt() {
           ))}
         </ul>
         <ul className="mt-4 flex flex-wrap gap-2">
-          {build.links.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="chip hover:border-muted"
-              >
-                {link.label} ↗
-              </a>
-            </li>
-          ))}
+          {build.links.map((link) => {
+            const Icon = link.kind === "repo" ? GitHub : GitPullRequest;
+            return (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="chip hover:border-muted"
+                >
+                  <Icon size={14} aria-hidden />
+                  {link.label} ↗
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </div>
 
@@ -36,20 +43,24 @@ export default function HowBuilt() {
         <p className="mt-1 text-muted">{fieldNotes.intro}</p>
         <ol className="mt-6 space-y-4">
           {fieldNotes.notes.map((note, index) => (
-            <li key={note.title} className="card">
-              <h4 className="font-medium break-words">
-                {index + 1}. {note.title}
-              </h4>
-              <dl className="mt-3 space-y-3 leading-7">
-                <div>
-                  <dt className="eyebrow">What happened</dt>
-                  <dd className="mt-1 break-words">{note.whatHappened}</dd>
+            <li key={note.title}>
+              <Reveal>
+                <div className="card transition duration-200 hover:border-muted motion-safe:hover:-translate-y-0.5 motion-reduce:transition-none">
+                  <h4 className="font-medium break-words">
+                    {index + 1}. {note.title}
+                  </h4>
+                  <dl className="mt-3 space-y-3 leading-7">
+                    <div>
+                      <dt className="eyebrow">What happened</dt>
+                      <dd className="mt-1 break-words">{note.whatHappened}</dd>
+                    </div>
+                    <div>
+                      <dt className="eyebrow">Fix</dt>
+                      <dd className="mt-1 break-words">{note.fix}</dd>
+                    </div>
+                  </dl>
                 </div>
-                <div>
-                  <dt className="eyebrow">Fix</dt>
-                  <dd className="mt-1 break-words">{note.fix}</dd>
-                </div>
-              </dl>
+              </Reveal>
             </li>
           ))}
         </ol>
