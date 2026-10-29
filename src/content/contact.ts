@@ -18,7 +18,7 @@ export const contact: ContactContent = {
   eyebrow: "04 · CONTACT",
   heading: "Get in touch",
   blurb:
-    "Open to FDE + agent infra roles, starting Jan 2027. Fastest way to reach me is email.",
+    "I'm looking for forward deployed and agent infrastructure roles starting January 2027, remote or in the Bay Area. Email is the fastest way to reach me.",
   links: [
     {
       label: "rajeevchaurasia.dev@gmail.com",
